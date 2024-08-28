@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR QR Code Scanner</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/zxing@0.18.1/dist/zxing.min.js"></script>
+</head>
+<body>
+  <h1>Scan the QR code to see the 3D model in AR!</h1>
+  <video id="qr-scanner" width="640" height="480"></video>
+  <script>
+    // Set up the QR code scanner
+    const qrScanner = document.getElementById('qr-scanner');
+    const qrCodeReader = new ZXing.BrowserQRCodeReader();
+    qrCodeReader.decodeFromVideo(qrScanner, (result, error) => {
+      if (result) {
+        // Redirect to the page that loads the 3D model
+        window.location.href = 'ar.html';
+      } else {
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>
